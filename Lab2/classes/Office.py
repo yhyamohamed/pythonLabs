@@ -14,7 +14,7 @@ class Office(object):
             return 'sry no thing added yet'
 
     def get_employee(self, empToFind):
-       self.db.find_by_id(empToFind.id)
+       return self.db.find_by_id(empToFind.id)
 
     def fire(self, empToRemove):
         self.db.delete(empToRemove.id)

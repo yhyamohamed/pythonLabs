@@ -55,25 +55,29 @@ class dbConnector(object):
             FROM employees
             WHERE NID = {id}
         """
-        self.cur.execute(retrive)
-        data = self.cur.fetchall()
-        return data
+        try:
+            with self.cur as cur:
+                cur.execute(retrive)
+                data = cur.fetchall()
+            return data
+        except Error as e:
+            print(e)
 
     def find_all(self):
-        retrive = """
+        retrive = f"""
             SELECT *
             FROM employees
         """
         with self.cur as cur:
             cur.execute(retrive)
-        # self.cur.execute(retrive)
             data = cur.fetchall()
         return data
 
     def delete(self, id):
         delete = f"""
             delete
-            FROM employees
+            FROM employees        # self.cur.execute(retrive)
+
             WHERE NID = {id}
         """
         try:
@@ -83,10 +87,10 @@ class dbConnector(object):
         except Error as e:
             return 'error cant delete it'
 
-    # def __del__(self):
-    #     try:
-    #         self.cursor.close()
-    #         self.conn.close()
-    #         return 'ok'
-    #     except Error as e:
-    #         pass
+    def __del__(self):
+        try:
+            self.cur.close()
+            self.conn.close()
+            return 'ok'
+        except Error as e:
+            pass

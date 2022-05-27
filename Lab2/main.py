@@ -57,13 +57,17 @@ dbHandler.hire(yaya2)
 allEmps = dbHandler.get_all_employees()
 print(f'all employees : {allEmps}')
 
-while True:
-    res = input('enter employee data ? y/N:').lower()
-    if res == 'y' :
-        NID = input('enter NID :')
-        name = input('enter name :')
-        credit =   int(input('enter credit :'))
-        email = input('enter email :')
+dbHandler2 = Office()
+founded = dbHandler2.get_employee(yaya)
+print(f'find him : {founded}')
 
-    if res == 'n':
-        break 
+# while True:
+    # res = input('enter employee data ? y/N:').lower()
+    # if res == 'y' :
+    #     NID = input('enter NID :')
+    #     name = input('enter name :')
+    #     credit =   int(input('enter credit :'))
+    #     email = input('enter email :')
+
+    # if res == 'n':
+    #     break 
